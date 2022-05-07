@@ -1,25 +1,32 @@
 #! /usr/bin/env python
-
+""" System modules """
 import math
 import string
+import secrets
 import random
 
 
-def generatePass(length: int) -> string:
-    password = ''
-    alpha = string.ascii_lowercase
-    alpha_upper = string.ascii_uppercase
-    number = string.digits
-    for i in range(0, math.ceil(length / 2) - 1):
-        password += random.choice(alpha)
-        password += random.choice(alpha_upper)
-        password += random.choice(number)
+def generate_pass(length: int) -> string:
+    """
+    Function to generate password of length N
+    Return password: string
+    """
+
+    password: string = ''
+    alpha: string = string.ascii_lowercase
+    alpha_upper: string = string.ascii_uppercase
+    number: int = string.digits
+    for _i in range(0, math.ceil(length / 2) - 1):
+        password += secrets.choice(alpha)
+        password += secrets.choice(alpha_upper)
+        password += secrets.choice(number)
 
     return password.strip()
 
 
 def main():
-    password = generatePass(23)
+    """ Takes a string and run function to generate password of length n """
+    password: string = generate_pass(23)
     print(password)
 
 

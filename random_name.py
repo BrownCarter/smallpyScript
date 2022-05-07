@@ -22,7 +22,7 @@ def main():
 
     # Generate N random names
 
-    for i in range(15):
+    for _i in range(15):
         fname = random.choice(first_last)
         lname = random.choice(last_last)
 
