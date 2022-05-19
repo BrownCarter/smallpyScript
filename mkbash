@@ -1,0 +1,23 @@
+#!/bin/env bash
+
+bash_file=$1
+
+if [[ -e $bash_file ]]; then
+  echo -ne "File $bash_file exist.\ndo you want to delete file?(yY|nN) "
+  read -r opt
+  [[ $opt =~ y|Y(es)? ]] && rm -rf "$bash_file"; exit 0
+  [[ $opt =~ n|N(o)? ]] && exit 0
+elif [[ -z $bash_file ]]; then
+  echo "Please provide file name"; exit 128
+else touch "$bash_file"
+fi
+
+
+cat  <<< "#!/bin/env bash
+
+# user -> $(whoami)
+# file -> $(echo $bash_file)
+# date -> $(date "+%a-%b-%Y  %T")
+" > $bash_file
+
+[[ -e $bash_file ]] && chmod u+x "$bash_file"
