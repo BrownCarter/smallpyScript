@@ -1,0 +1,18 @@
+#!/bin/env bash
+
+# user -> Brown Carter
+# file -> birthday
+# date -> Fri-Jun-2022  20:34:07
+
+today=$(date +"%d-%m")
+declare -A numbers
+# can increase numbers if you have multiple girlfriends.
+# numbers = [phone_number]="<day-month>" of birth
+numbers=([09032052516]="16-06")
+birthday_message="My beautiful love, I’m wishing you the happiest birthday yet!\nEach day you become more and more desirable, or perhaps I’m just falling more and more for you!\nWishing you an amazing day, with lots of special treats! Kisses!"
+
+for number in "${!numbers[@]}"; do
+  if [[ ${numbers[$number]} == "$today" ]]; then
+    termux-sms-send -n "$number" "$birthday_message"
+  fi
+done

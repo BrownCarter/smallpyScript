@@ -1,0 +1,7 @@
+#!/bin/env sh
+
+# user -> u0_a271
+# file -> test_posix
+# date -> Wed-Jun-2022  02:22:37
+data=$(ls -l) 
+echo "$data"

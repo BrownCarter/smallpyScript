@@ -5,18 +5,18 @@ py_file=$1
 if [[ -e $py_file ]]; then
   echo -ne "File $py_file exist.\ndo you want to delete file?(yY|nN) "
   read -r opt
-  [[ $opt =~ y|Y(es)? ]] && rm -rf "$py_file"; exit 34
-  [[ $opt =~ n|N(o)? ]] && exit 35
+  [[ $opt =~ y|Y(es)? ]] && rm -rf "$py_file"; exit 0
+  [[ $opt =~ n|N(o)? ]] && exit 0
 elif [[ -z $py_file ]]; then
   echo "Please provide file name"; exit 128
 else touch "$py_file"
 fi
 
 
-cat  > "$py_file" <<-PYCODE
-#!/bin/env python3
+cat  <<< "#!/bin/env python3
 
-# user -> $(whoami)
+# user -> Brown Carter
+# file -> $(echo $py_file)
 # date -> $(date "+%a-%b-%Y  %T")
 
 import os
@@ -28,7 +28,6 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
-PYCODE
+    main()" > $py_file
 
 [[ -e $py_file ]] && chmod u+x "$py_file"

@@ -15,7 +15,7 @@ fi
 
 cat  <<< "#!/bin/env bash
 
-# user -> $(whoami)
+# user -> Brown Carter
 # file -> $(echo $bash_file)
 # date -> $(date "+%a-%b-%Y  %T")
 " > $bash_file
