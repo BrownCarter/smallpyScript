@@ -4,23 +4,37 @@ Systemctl for termux.
 ## Warning
 only use if you've installed termux-service.
 
-`pkg install termux-service`
+```
+$ pkg install termux-service`
+```
 
 # Usage
 ake sure you change permission of executable before moving to path.
 
-`cd systemctl_termux`
+```
+$ cd systemctl_termux`
+```
 
-`chmod +x systemctl && cp systemctl $HOME/.local/bin`
+```
+$ chmod +x systemctl && cp systemctl $HOME/.local/bin`
+```
 
 ## start service
-`systemctl start mysqld`
+```
+$ systemctl start mysqld`
+```
 
 ## stop service
-`systemctl stop mysqld`
+```
+$ systemctl stop mysqld`
+```
 
 ## restart service
-`systemctl restart service`
+```
+$ systemctl restart service`
+```
 
 ## check status
-`systemctl status mysqld`
+```
+$ systemctl status mysqld`
+```
