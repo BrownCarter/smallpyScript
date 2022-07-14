@@ -9,7 +9,7 @@ $ pkg install termux-service
 ```
 
 # Usage
-ake sure you change permission of executable before moving to path.
+Make sure you change permission of executable before moving to path.
 
 ```
 $ cd systemctl_termux
