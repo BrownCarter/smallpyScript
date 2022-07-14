@@ -1,11 +1,8 @@
 #!/bin/env bash
 
-# user -> u0_a271
+# user -> Brown Carter
 # file -> systemctl
 # date -> Tue-Jun-2022  21:10:41
-
-#only use if you've installed termux-service <pkg install <termux-service>
-#change permission <chmod +x systemctl> and move to .local/bin directory 
 
 case $1 in
   enable)
@@ -31,5 +28,3 @@ case $1 in
     echo "invalid option"
     ;;
 esac
-
-
