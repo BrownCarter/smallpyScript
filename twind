@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+if [[ $1 == "init" ]]; then
+  if ! [[ -e ./tailwind.config.js ]]; then
+    touch ./tailwind.config.js
+    cat <<< "//tailwind.conf.js
+module.exports = { 
+  // The content section of your tailwind.config.js file is where you configure the paths to all of your HTML templates, JavaScript components, and any other source files that contain Tailwind class names.
+  // Use ** to match zero or more directories
+  content: [
+    './scripts/*.js',
+    './*.{php,html,js}',
+    './src/scripts/*.js',
+    './src/*.{html,php,js}',
+  ],
+  colors: {
+  },
+  fontFamily: {
+    sans: ['Graphik', 'sans-serif'],
+    serif: ['Merriweather', 'serif'],
+  },
+  extend: {
+    spacing: {
+    },
+  },
+  plugins: [],
+}
+" > ./tailwind.config.js
+  if ! [[ -d ./styles && -e ./main.css ]]; then
+    mkdir ./styles && touch ./styles/main.css
+    cat <<< "/*main.css*/
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+" > ./styles/main.css
+  fi
+  else exit 0
+  fi
+  fi && (tailwind -i ./styles/main.css -o ./styles/style.css --watch ) &
