@@ -1,0 +1,86 @@
+#!/bin/env bash
+## pnpm setup react
+echo "setting up react app.."
+pnpm create vite@latest "$1" --template react
+
+## setup tailwindcss
+echo "setting up tailwindcss.."
+pnpm install -D tailwindcss postcss autoprefixer
+
+cat<<<"module.exports = {
+  darkMode: 'class',
+  content: ['./index,html','./src/**/*.{js,jsx,ts,tsx}'],
+  theme: {
+    extend: {
+      backgroundImage: {},
+      colors: {
+        primary: {
+        },
+        light: {
+        },
+        dark: {
+        },
+      },
+    },
+    fontFamily: {
+      sans: ['Inter'],
+    },
+  },
+  plugins: [],
+};
+" > ./tailwind.config.cjs
+
+cat <<< 'module.exports = {
+  plugins: {
+    tailwindcss: {},
+    autoprefixer: {},
+  }
+}
+' > ./postcss.config.cjs
+
+cat <<<'{
+    "parserOptions":{
+        "sourceType": "module",
+        "ecmaVersion": 13,
+        "ecmaFeatures": {
+            "jsx": true,
+            "modules": true,
+            "experimentalObjectRestSpread": true
+        }
+    },
+    "plugins":["react"],
+    "extends": ["eslint:recommended", "plugin:react/recommended", "plugin:react/jsx-runtime"],
+    "root": true,
+    "env": {
+        "browser": true,
+        "es2022": true,
+        "node": true
+    }
+}
+' > .eslintrc.json
+
+
+cat <<<'
+{
+  "compilerOptions": {
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "target": "ES2020",
+    "jsx": "react",
+    "strictNullChecks": true,
+    "strictFunctionTypes": true
+  },
+  "exclude": [
+    "node_modules",
+    "**/node_modules/*"
+  ]
+}
+' > ./jsconfig.json
+
+cat <<<"
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+" > ./src/index.css
+
+echo "Finish setup"

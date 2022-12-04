@@ -1,0 +1,15 @@
+#!/bin/env bash
+
+cd "$1" || exit
+
+pnpm install @types/node --save-dev
+
+tsc --init --rootDir src --outDir build \
+--esModuleInterop --resolveJsonModule --lib esnext --target esnext \
+--module esnext --allowJs true --noImplicitAny true
+
+pnpm install --save-dev typescript nodemon
+
+mkdir "$1/src" && touch "$1/src/index.ts"
+
+echo "run nodemon"
