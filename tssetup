@@ -1,5 +1,7 @@
 #!/bin/env bash
 
+mkdir "$1"
+
 cd "$1" || exit
 
 pnpm install @types/node --save-dev

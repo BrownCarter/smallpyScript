@@ -3,6 +3,8 @@
 echo "setting up react app.."
 pnpm create vite@latest "$1" --template react-ts
 
+cd "$1" || exit
+
 ## setup tailwindcss
 echo "setting up tailwindcss.."
 pnpm install -D tailwindcss postcss autoprefixer
@@ -81,5 +83,7 @@ cat <<<"
 @tailwind components;
 @tailwind utilities;
 " > ./src/index.css
+
+pnpm install
 
 echo "Finish setup"
