@@ -14,9 +14,12 @@ def main():
     one_url = "https://chapmanganato.com/manga-wd951838/"
     one_req = requests.get(one_url)
     if one_req.status_code == 200:
-        onepunch_content = BeautifulSoup(one_req.content, 'html.parser')
-        chapter_list = onepunch_content.find_all(
-            'a', attrs={'class': 'chapter-name'})[0].get_text().split()
+        onepunch_content = BeautifulSoup(one_req.content, "html.parser")
+        chapter_list = (
+            onepunch_content.find_all("a", attrs={"class": "chapter-name"})[0]
+            .get_text()
+            .split()
+        )
 
         chapter = {
             "last_chapter": int(chapter_list[1]),
@@ -25,14 +28,17 @@ def main():
         with open("onepunch.json", "r") as one_file:
             one_data = json.load(one_file)
             if one_data["last_chapter"] < int(chapter_list[1]):
-                run([
-                    "notify-send",
-                    f"A new chapter of one punch man \n "
-                    f"chapter {int(chapter_list[1])} is out"])
+                run(
+                    [
+                        "notify-send",
+                        f"A new chapter of one punch man \n "
+                        f"chapter {int(chapter_list[1])} is out",
+                    ]
+                )
 
         with open("onepunch.json", "w") as one_file:
             json.dump(chapter, one_file)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

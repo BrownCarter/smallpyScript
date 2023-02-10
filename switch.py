@@ -14,9 +14,10 @@ HOME = Path().home()
 def main():
     wall_path = Path(HOME.joinpath(".local/share/wallpapers/wall/"))
     wallpapers = secrets.choice([wall for wall in wall_path.iterdir()])
-    subprocess.run(["swaymsg", "output", "*", "bg",
-                   wallpapers, "fill"], capture_output=True)
+    subprocess.run(
+        ["swaymsg", "output", "*", "bg", wallpapers, "fill"], capture_output=True
+    )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
