@@ -4,9 +4,9 @@
 # file -> switch.py
 # date -> Thu-Jan-2023  07:47:42
 
-import subprocess
 from pathlib import Path
 import secrets
+import subprocess
 
 HOME = Path().home()
 
