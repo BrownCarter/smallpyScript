@@ -4,8 +4,8 @@ import cProfile
 
 
 def main():
-    """ Converts sentence to Pig Latin """
-    vowel = {'a', 'e', 'i', 'o', 'u'}
+    """Converts sentence to Pig Latin"""
+    vowel = {"a", "e", "i", "o", "u"}
     word = input("Enter sentence: ")
     ans = str()
     for pig in word.split():
@@ -22,4 +22,4 @@ def main():
 
 
 if __name__ == "__main__":
-    cProfile.run('main()')
+    cProfile.run("main()")

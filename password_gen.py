@@ -11,7 +11,7 @@ def generate_pass(length: int) -> string:
     Return password: string
     """
 
-    password: string = ''
+    password: string = ""
     alpha: string = string.ascii_lowercase
     alpha_upper: string = string.ascii_uppercase
     number: int = string.digits
@@ -24,7 +24,7 @@ def generate_pass(length: int) -> string:
 
 
 def main():
-    """ Takes a string and run function to generate password of length n """
+    """Takes a string and run function to generate password of length n"""
     password: string = generate_pass(23)
     print(password)
 

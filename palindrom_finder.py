@@ -3,7 +3,7 @@ import cProfile
 
 
 def main():
-    with open('dict.txt', 'r', encoding='UTF-8') as a_dict:
+    with open("dict.txt", "r", encoding="UTF-8") as a_dict:
         word = set(a_dict.read().strip().split())
     palindroms = set()
     for palindrom in word:

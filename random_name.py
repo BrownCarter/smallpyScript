@@ -6,18 +6,53 @@ import sys
 
 def main():
     first_last = (
-        "Liam", "Noah", "Oliver", "Elijah",
-        "William", "James", "Benjamin", "Lucas", "Henry", "Alexander",
-        "Mason", "Michael", "Ethan", "Daniel", "Jacob", "Logan", "Jackson",
-        "Levi", "Sebastian", "Mateo", "Jack", "Owen"
+        "Liam",
+        "Noah",
+        "Oliver",
+        "Elijah",
+        "William",
+        "James",
+        "Benjamin",
+        "Lucas",
+        "Henry",
+        "Alexander",
+        "Mason",
+        "Michael",
+        "Ethan",
+        "Daniel",
+        "Jacob",
+        "Logan",
+        "Jackson",
+        "Levi",
+        "Sebastian",
+        "Mateo",
+        "Jack",
+        "Owen",
     )
 
     last_last = (
-        "Liam", "Noah", "Oliver",
-        "Elijah", "William", "James",
-        "Benjamin", "Lucas", "Henry", "Alexander",
-        "Mason", "Michael", "Ethan", "Daniel", "Jacob", "Logan", "Jackson", "Levi",
-        "Sebastian", "Mateo", "Jack", "Owen"
+        "Liam",
+        "Noah",
+        "Oliver",
+        "Elijah",
+        "William",
+        "James",
+        "Benjamin",
+        "Lucas",
+        "Henry",
+        "Alexander",
+        "Mason",
+        "Michael",
+        "Ethan",
+        "Daniel",
+        "Jacob",
+        "Logan",
+        "Jackson",
+        "Levi",
+        "Sebastian",
+        "Mateo",
+        "Jack",
+        "Owen",
     )
 
     # Generate N random names

@@ -1,0 +1,50 @@
+#!/bin/env bash
+#
+# Copyright (c) 2022, Oracle and/or its affiliates.
+# Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl.
+#
+# This script installs Prisma CLI and the Prisma schema
+#
+# Usage:
+#   ./setup-prisma
+#
+# Example:
+#   ./setup-prisma
+#
+#
+#
+set -euo pipefail
+
+echo "Installing Prisma CLI and the Prisma schema"
+
+mkdir "$1"
+
+cd "$1"
+
+pnpm init
+
+pnpm install typescript ts-node @types/node --save-dev
+
+# Initialize typescript
+#
+npx tsc --init
+pnpm install prisma --save-dev
+npx prisma init --datasource-provider sqlite
+
+cat > ./prisma/schema.prisma << EOF
+model User {
+  id    Int     @id @default(autoincrement())
+  email String  @unique
+  name  String?
+  posts Post[]
+}
+
+model Post {
+  id        Int     @id @default(autoincrement())
+  title     String
+  content   String?
+  published Boolean @default(false)
+  author    User    @relation(fields: [authorId], references: [id])
+  authorId  Int
+}
+EOF

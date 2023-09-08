@@ -4,8 +4,8 @@
 # file -> onepunch.py
 # date -> Thu-Feb-2023  18:54:33
 
-import json
 from bs4 import BeautifulSoup
+import json
 import requests
 from subprocess import run
 
@@ -35,6 +35,8 @@ def main():
                         f"chapter {int(chapter_list[1])} is out",
                     ]
                 )
+            else:
+                run(["notify-send", "No new chapter of one punch man 😿 \n "])
 
         with open("onepunch.json", "w") as one_file:
             json.dump(chapter, one_file)

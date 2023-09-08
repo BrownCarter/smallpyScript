@@ -9,7 +9,8 @@ cd "$1" || exit
 echo "setting up tailwindcss.."
 pnpm install -D tailwindcss postcss autoprefixer
 
-cat<<<"module.exports = {
+cat > ./tailwind.config.cjs << EOF
+module.exports = {
   darkMode: 'class',
   content: ['./index.html','./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
@@ -30,9 +31,10 @@ cat<<<"module.exports = {
   },
   plugins: [],
 };
-" > ./tailwind.config.cjs
+EOF
 
-cat <<<'{
+cat > .eslintrc.json << EOF
+{
     "parserOptions":{
         "sourceType": "module",
         "ecmaVersion": 13,
@@ -51,17 +53,19 @@ cat <<<'{
         "node": true
     }
 }
-' > .eslintrc.json
+EOF
 
-cat <<< 'module.exports = {
+cat > ./postcss.config.cjs << EOF
+module.exports = {
   plugins: {
     tailwindcss: {},
     autoprefixer: {},
+    ...(process.env.NODE_ENV === 'production' ? { cssnano: {} } : {})
   }
 }
-' > ./postcss.config.cjs
+EOF
 
-cat <<<'
+cat > ./jsconfig.json << EOF
 {
   "compilerOptions": {
     "module": "ESNext",
@@ -76,13 +80,42 @@ cat <<<'
     "**/node_modules/*"
   ]
 }
-' > ./jsconfig.json
+EOF
 
-cat <<<"
+cat > ./src/index.css << EOF
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-" > ./src/index.css
+EOF
+
+echo "setup react-router-dom && react-query.."
+
+pnpm install react-router-dom localforage match-sorter sort-by
+pnpm install react-query
+
+cat > ./src/main.tsx << EOF
+import React from 'react';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import ReactDOM from 'react-dom/client';
+import App from './App.tsx';
+import { QueryClient, QueryClientProvider } from 'react-query';
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <App />,
+  },
+]);
+
+const queryClient = new QueryClient();
+
+ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
+  <React.StrictMode>
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+    </QueryClientProvider>
+  </React.StrictMode>
+);
+EOF
 
 pnpm install
 
